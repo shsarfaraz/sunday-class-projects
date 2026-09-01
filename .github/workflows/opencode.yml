@@ -1,14 +1,19 @@
 name: AI PR Review
 
 on:
+  pull_request:
+    types: [opened, synchronize]
+
   issue_comment:
     types: [created]
+
   pull_request_review_comment:
     types: [created]
 
 jobs:
   ai-review:
     if: |
+      github.event_name == 'pull_request' ||
       contains(github.event.comment.body, 'oc review') ||
       contains(github.event.comment.body, '/oc review') ||
       contains(github.event.comment.body, '/opencode review')
@@ -32,7 +37,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PR_NUMBER="${{ github.event.issue.number || github.event.pull_request.number }}"
+          PR_NUMBER="${{ github.event.pull_request.number || github.event.issue.number }}"
           echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
 
           gh pr diff "$PR_NUMBER" > pr_diff.txt
@@ -53,15 +58,23 @@ jobs:
 
           prompt = """You are reviewing a GitHub pull request.
 
-          Analyze the provided diff for:
+          Analyze the provided diff carefully for:
           - bugs
+          - off-by-one errors
+          - null/None handling problems
           - security problems
           - logic errors
           - breaking changes
           - important code-quality issues
 
-          Be concise. If you find a real problem, explain the problem and
-          give a specific fix. If there are no significant problems, say so.
+          Focus especially on finding real bugs introduced by this PR.
+
+          Be concise. If you find a real problem:
+          1. Clearly identify the problematic code/change.
+          2. Explain why it is a bug.
+          3. Give a specific fix.
+
+          If there are no significant problems, say so.
 
           Pull request diff:
           """ + diff[:50000]
