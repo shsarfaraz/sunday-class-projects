@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sarfaraz Ahmed</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Persistent navigation -->
+  <nav class="topbar" role="navigation" aria-label="Main navigation">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+    <span class="nav-tag">20y &#8594; now</span>
+  </nav>
+
+  <!-- Hero: viewport-sized, clamp type, two-career tagline -->
+  <section id="hero" aria-labelledby="hero-name">
+    <h1 id="hero-name">Sarfaraz Ahmed</h1>
+    <p class="hero-tagline measure">Accountant transitioning to software development and AI</p>
+    <div class="hero-rule" aria-hidden="true"></div>
+  </section>
+
+  <!-- About: two-column ledger, one career per side -->
+  <section id="about" aria-labelledby="about-heading">
+    <h2 id="about-heading">About</h2>
+    <div class="about-grid">
+      <div class="about-col measure">
+        <h3>Accounts &amp; Management</h3>
+        <p>Twenty years in accounts, HR, and general management across multi-branch operations in Karachi. The work was a mix of financial reporting, bookkeeping, bank reconciliation, budgeting, auditing, hiring, training, and supervising a workforce. Most of it was internal — making the books close, keeping the cash book and ledger accurate, paying vendors on time, and making sure every branch reported the same numbers.</p>
+      </div>
+      <div class="about-col measure">
+        <h3>Software &amp; AI</h3>
+        <p>Currently a GIAIC student in software development and AI, working through TypeScript, Python, Node.js, React, and a growing comfort with the rest of the modern toolchain. The shift is deliberate — analytical and leadership skills from running a multi-branch operation, applied to building technology.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects: two-column card grid, one career per card -->
+  <section id="projects" aria-labelledby="projects-heading">
+    <h2 id="projects-heading">Projects</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>Accounting Network System</h3>
+        <p class="measure">A computerized network that connected the accounts of all branches of K.L.H Graphics into a single ledger, so the books closed the same day in every location. Built the network, migrated the data, and trained the staff on the new system. Ran on it for the rest of the tenure.</p>
+      </article>
+      <article class="card">
+        <h3>AI Learning Portfolio</h3>
+        <p class="measure">A collection of personal and coursework projects built during the GIAIC software development programme. TypeScript and Python scripts, Node.js REST APIs, and React frontend work — all built as part of the curriculum, not shipped commercially.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Skills: grouped list -->
+  <section id="skills" aria-labelledby="skills-heading">
+    <h2 id="skills-heading">Skills</h2>
+    <div class="skills-grid">
+      <div>
+        <h3>Programming &amp; AI</h3>
+        <ul>
+          <li>TypeScript</li>
+          <li>Python</li>
+          <li>Node.js</li>
+          <li>React</li>
+          <li>Git</li>
+          <li>Artificial Intelligence</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Accounting &amp; Management</h3>
+        <ul>
+          <li>Financial Reporting</li>
+          <li>Bookkeeping</li>
+          <li>Bank Reconciliation</li>
+          <li>Budgeting</li>
+          <li>MS Excel</li>
+          <li>Team Leadership</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact: ruled lines -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact</h2>
+    <ul class="contact-list">
+      <li><a href="mailto:shsarfaraz585@gmail.com">shsarfaraz585@gmail.com</a></li>
+      <li><a href="tel:03002240162">0300 2240162</a></li>
+      <li><a href="https://github.com/shsarfaraz" target="_blank" rel="noopener noreferrer">github.com/shsarfaraz</a></li>
+      <li><a href="https://linkedin.com/in/sarfaraz-ahmed-ai" target="_blank" rel="noopener noreferrer">linkedin.com/in/sarfaraz-ahmed-ai</a></li>
+    </ul>
+  </section>
+
+  <!-- Scroll-reveal script: fires reduced by default on render.sh camera -->
+  <script>
+    var ro = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          ro.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    [].slice.call(document.querySelectorAll('.reveal')).forEach(function (n) { ro.observe(n); });
+  </script>
+
+</body>
+</html>
